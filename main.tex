@@ -1,0 +1,521 @@
+%% 
+%% Copyright 2019-2020 Elsevier Ltd
+%% 
+%% This file is part of the 'CAS Bundle'.
+%% --------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'CAS Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for cas-sc documentclass for 
+%% double column output.
+
+%\documentclass[a4paper,fleqn,longmktitle]{cas-sc}
+\documentclass[a4paper,fleqn]{cas-sc}
+
+% \usepackage[numbers]{natbib}
+%\usepackage[authoryear]{natbib}
+\usepackage[authoryear,longnamesfirst]{natbib}
+
+%%%Author definitions
+\def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
+\tsc{WGM}
+\tsc{QE}
+\tsc{EP}
+\tsc{PMS}
+\tsc{BEC}
+\tsc{DE}
+%%%
+
+% Uncomment and use as if needed
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newdefinition{rmk}{Remark}
+%\newproof{pf}{Proof}
+%\newproof{pot}{Proof of Theorem \ref{thm}}
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+% Short title
+\shorttitle{Distinctiveness in Two-Mode Networks}
+
+% Short author
+\shortauthors{O. Lizardo}
+
+% Main title of the paper
+\title [mode = title]{Distinctiveness in Two-Mode Networks}                      
+% Title footnote mark
+% eg: \tnotemark[1]
+\tnotemark[1]
+
+% Title footnote 1.
+% eg: \tnotetext[1]{Title footnote text}
+% \tnotetext[<tnote number>]{<tnote text>} 
+\tnotetext[1]{Work on this paper was partially supported by National Science Foundation grant \#.}
+
+%\tnotetext[2]{The second title footnote which is a longer text matter
+   %to fill through the whole text width and overflow into
+   %another line in the footnotes area of the first page.}
+
+
+% First author
+%
+% Options: Use if required
+% eg: \author[1,3]{Author Name}[type=editor,
+%       style=chinese,
+%       auid=000,
+%       bioid=1,
+%       prefix=Sir,
+%       orcid=0000-0000-0000-0000,
+%       facebook=<facebook id>,
+%       twitter=<twitter id>,
+%       linkedin=<linkedin id>,
+%       gplus=<gplus id>]
+\author[1]{Omar Lizardo}[orcid=0000-0002-5405-3007]
+
+% Corresponding author indication
+\cormark[1]
+
+% Footnote of the first author
+%\fnmark[1]
+
+% Email id of the first author
+\ead{olizardo@soc.ucla.edu}
+
+% URL of the first author
+\ead[url]{https://olizardo.github.io/mysite/}
+
+%  Credit authorship
+\credit{Conceptualization of this study, Methodology, Software}
+
+% Address/affiliation
+\affiliation[1]{organization={University of California, Los Angeles},
+    addressline={375 Portola Plaza, 264 Haines Hall}, 
+    city={Los Angeles},
+    % citysep={}, % Uncomment if no comma needed between city and postcode
+    postcode={90095}, 
+    state={CA},
+    country={U.S.A}}
+% Corresponding author text
+\cortext[cor1]{Corresponding author}
+%\cortext[cor2]{Principal corresponding author}
+
+% Footnote text
+%\fntext[fn1]{This is the first author footnote}
+%\fntext[fn2]{Another author footnote}
+
+% For a title note without a number/mark
+%\nonumnote{This note has no numbers.}
+
+% Here goes the abstract
+\begin{abstract}
+This template helps you to create a properly formatted \LaTeX\ manuscript.
+
+\noindent\texttt{\textbackslash begin{abstract}} \dots 
+\texttt{\textbackslash end{abstract}} and
+\verb+\begin{keyword}+ \verb+...+ \verb+\end{keyword}+ 
+which
+contain the abstract and keywords respectively. 
+
+\noindent Each keyword shall be separated by a \verb+\sep+ command.
+\end{abstract}
+
+% Use if graphical abstract is present
+% \begin{graphicalabstract}
+% \includegraphics{figs/grabs.pdf}
+% \end{graphicalabstract}
+
+% Research highlights
+\begin{highlights}
+\item Research highlights item 1
+\item Research highlights item 2
+\item Research highlights item 3
+\end{highlights}
+
+% Keywords
+% Each keyword is seperated by \sep
+\begin{keywords}
+Two-Mode Networks  \sep Distinctiveness \sep Centrality \sep Position
+\end{keywords}
+
+
+\maketitle
+
+\section{Introduction}
+
+
+\section{Approach}
+Consider the affiliation matrix $\mathbf{A}$ associated with the two-mode network shown in~\ref{tab:southern} \citep{davis1941}. This matrix is of dimensions \textit{p} $\times$ \textit{g} where \textit{p} is the number of people (in this case $p = 18$) and \textit{g} is the number of groups ($g = 15)$. Row-wise, cells in this matrix record the affiliations of each person, with $a_{ij} = 1$ if the $i^{th}$ person belongs to the $j^{th}$ group; otherwise, $a_{ij} = 0$; considered column-wise, the cells of the affiliation matrix record the members of each group. 
+
+Now consider a matrix $\mathbf{B}$ of the same dimensions as $\mathbf{A}$ but with reverse entries: For each cell $b_{ij}$ in $\mathbf{B}$, whenever $a_{ij} = 1$ in $\mathbf{A}$, $b_{ij} = 0$. In the same way, whenever $a_{ij} = 0$ in $\mathbf{A}$, $b_{ij} = 1$ in $\mathbf{B}$. $\mathbf{B}$ can be considered $\mathbf{A}$'s evil twin (alternatively, $\mathbf{B}$ can be thought of as ``bizarro $\mathbf{A}$'' if you are into Superman comics). For people, $\mathbf{B}$ records \textit{disaffiliations}; the groups each person does not belong to. This can be seen by noting that $b_{ij} = 1$ only when the $i^{th}$ person does not belong to the $j^{th}$ group. Similarly, for groups, $\mathbf{B}$ records \textit{non-memberships}, the people who don't belong to each group. 
+
+Following Breiger's \citeyearpar{breiger1974duality} classic paper, it is well known that the one-mode projection of the two-mode network can be obtained via matrix multiplication using the formulas:
+
+\begin{equation}
+    \textbf{P} = \textbf{AA}^T
+\end{equation}
+
+\begin{equation}
+    \textbf{G} = \textbf{A}^T\textbf{A}
+\end{equation}
+
+Matrix $\mathbf{P}$ is a $p \times p$ matrix, with entries $p_{ij}$ equal to the group overlap between persons $i$ and $j$---equivalent to the number of memberships held in common between the two people. Matrix $G$ is a $g \times g$ matrix with entries $g_{kl}$ equal to the membership overlap between groups---the number of people held in common by two groups. Both $\mathbf{P}$ and $\mathbf{G}$ can thus be thought of as (weighted) one-mode \textit{similarity} networks. The entries in the one-mode projection also provide the raw materials to compute alternative similarity metrics between people or groups, such as Jaccard, Dice, Cosine, and others. 
+
+So far, this is well-trodden ground. However, consider a modified version of the projection approach combining information from the $\mathbf{A}$ and $\mathbf{B}$ matrices. We can do this using the equations:
+
+\begin{equation}
+    \textbf{P}^* = \textbf{AB}^T
+\end{equation}
+
+\begin{equation}
+    \textbf{G}^* = \textbf{B}^T\textbf{A}
+\end{equation}
+
+What's the difference between $\mathbf{P}$ and $\mathbf{P^*}$? Well, since $\mathbf{P}$ is built from information in the original affiliation matrix $\mathbf{A}$, the one mode projection $\mathbf{P}$ counts membership \textit{matches} between people. Matrix $\mathbf{P^*}$ on the other hand, counts \textit{mismatches}; that is, its entries $p^*_{ij}$ count the number of times the $i^{th}$ person belongs to a group that the $j^{th}$ person does \textit{not} belong to. So it records the \textit{distinctiveness} of persons $i$'s memberships compared to $j$'s. In the same way, for groups, the entries $g^*_{kl}$ in $\mathbf{G^*}$ counts the number of people that belong to the $k^{th}$ group who don't belong to the $l^{th}$ one. So it records the \textit{distinctiveness} of group $k$'s members compared to $l$'s. 
+
+Note that while the $\mathbf{P}$ and $\mathbf{G}$ matrices are necessarily symmetrical (the number of shared memberships between persons $i$ and $j$ has to be the same as that between $j$ and $i$), this is not the case for $\mathbf{P^*}$ and $\mathbf{G^*}$. Tables~\ref{tab:pdist} and~\ref{tab:gdist} show the results for the Southern Women Data, where we can see that both $\mathbf{P^*}$ and $\mathbf{G^*}$ are asymmetric. This property is most clearly appreciated when one person's $i$ memberships are a \textit{subset} of another person's $j$ and $j$'s total number of memberships is larger than $i$'s. In that case, $p^*_{ij} = 0$ (there are no groups that person $i$ belongs to that $j$ does not belong to) while $p^*_{ji} > 0$ (there are some groups $j$ belongs to that $i$ does not). In the same way, in the case of two people whose memberships have no overlap, $p^*_{ij}$ will be equal to the number of groups $i$ belongs to, and $p^*_{ji}$ will be equal to the number of groups $j$ belongs to (which don't necessarily have to be the same, although they could be).  The same reasoning applies to the group-based distinctiveness matrix $\mathbf{G^*}$.
+
+It is also useful to consider a modified, degree-normalized version of the distinctiveness projection matrices for persons and groups, as given by: 
+
+\begin{equation}
+    \hat{\textbf{P}}^* = \textbf{D}_p^{-1}\textbf{P}^*
+\end{equation}
+
+\begin{equation}
+    \hat{\textbf{G}}^* = \textbf{D}_g^{-1}\textbf{G}^*
+\end{equation}
+
+Where everything is as before, and $\textbf{D}_p$ is the diagonal degree matrix for people (containing the number of memberships of each person, as given by the row sums of $\mathbf{A}$ as diagonal entries) and $\textbf{D}_g$ is the diagonal degree matrix for groups (containing the number of members of each group, as given by the column sums of $\mathbf{A}$ as diagonal entries). The degree-normalized distinctiveness matrices for persons and groups corresponding to the Southern Women Data are shown in~\ref{tab:degnormp} and~\ref{tab:degnormg}.
+
+One way to interpret the information contained in the $\hat{\textbf{P}}^*$ and $\hat{\textbf{G}}^*$ matrices is as giving the \textit{probability} that the row person does \textit{not} share a group membership with the column person, and the probability that the row group does not share a member with the column group (respectively). For pairs of persons and groups with disjoint memberships, this value is at a maximum: $\hat{p}_{ij}^* = 1$ and $\hat{g}_{ij}^* = 1$. Whenever the row person's memberships or the row group's members are a strict subset of the column person or group, this value is at a minimum: $\hat{p}_{ij}^* = 0$ and $\hat{g}_{ij}^* = 0$. All other cases fall in between; as the memberships of one person $i$ approaches being a subset of another person's $j$, $\hat{p}_{ij}^*$ approaches zero. In the same way, as the members of one group $i$ approach being a subset of another group's $j$, $\hat{g}_{ij}^*$ approaches zero. 
+
+Accordingly, since both the $\hat{\textbf{P}}^*$ and the $\hat{\textbf{G}}^*$ matrices contain pairwise information of the \textit{distinctiveness} of each person's and group's memberships relative to that of each other person and group, we can calculate a straightforward \textit{Distinctiveness Centrality Index} for each node set based on this information, as given by:
+
+\begin{equation}
+    C^{D}_p = \frac{1}{p}\sum_i \hat{p}_{ij}^*
+\end{equation}
+
+\begin{equation}
+     C^{D}_g = \frac{1}{g}\sum_i \hat{g}_{ij}^*
+\end{equation}
+
+For both persons and groups, $C^{D}$ approaches one as the person's memberships are distinct from other person's and as the group's members are distinct from that of other groups. Of course, the value of one can only be reached in the (odd) isolated case of a person who belongs to a ``group'' no one else belongs to or a group with a member who is not a member of other groups. In the same way, $C^{D}$ approaches zero when a person's memberships are a subset of other people's or a group's members are a subset of that of other groups. The rank-ordered $C^D$ indices for each person and group in the Southern Women's Data are shown in Table~\ref{tab:cd}
+
+
+%% Loading bibliography style file
+% \bibliographystyle{model1-num-names}
+\bibliographystyle{cas-model2-names}
+
+% Loading bibliography database
+\bibliography{cas-refs}
+\end{document}
+
+
+The Elsevier cas-sc class is based on the
+standard article class and supports almost all of the functionality of
+that class. In addition, it features commands and options to format the
+\begin{itemize} \item document style \item baselineskip \item front
+matter \item keywords and MSC codes \item theorems, definitions and
+proofs \item lables of enumerations \item citation style and labeling.
+\end{itemize}
+
+This class depends on the following packages
+for its proper functioning:
+
+\begin{enumerate}
+\itemsep=0pt
+\item {natbib.sty} for citation processing;
+\item {geometry.sty} for margin settings;
+\item {fleqn.clo} for left aligned equations;
+\item {graphicx.sty} for graphics inclusion;
+\item {hyperref.sty} optional packages if hyperlinking is
+  required in the document;
+\end{enumerate}  
+
+All the above packages are part of any
+standard \LaTeX{} installation.
+Therefore, the users need not be
+bothered about downloading any extra packages.
+
+\section{Installation}
+
+The package is available at author resources page at Elsevier
+(\url{http://www.elsevier.com/locate/latex}).
+The class may be moved or copied to a place, usually,\linebreak
+\verb+$TEXMF/tex/latex/elsevier/+, %$%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+or a folder which will be read                   
+by \LaTeX{} during document compilation.  The \TeX{} file
+database needs updation after moving/copying class file.  Usually,
+we use commands like \verb+mktexlsr+ or \verb+texhash+ depending
+upon the distribution and operating system.
+
+\section{Front matter}
+
+The author names and affiliations could be formatted in two ways:
+\begin{enumerate}[(1)]
+\item Group the authors per affiliation.
+\item Use footnotes to indicate the affiliations.
+\end{enumerate}
+See the front matter of this document for examples. 
+You are recommended to conform your choice to the journal you 
+are submitting to.
+
+\section{Bibliography styles}
+
+There are various bibliography styles available. You can select the
+style of your choice in the preamble of this document. These styles are
+Elsevier styles based on standard styles like Harvard and Vancouver.
+Please use Bib\TeX\ to generate your bibliography and include DOIs
+whenever available.
+
+Here are two sample references: \cite{Fortunato2010}
+\cite{Fortunato2010,NewmanGirvan2004}
+\cite{Fortunato2010,Vehlowetal2013}
+
+\section{Floats}
+{Figures} may be included using the command,\linebreak 
+\verb+\includegraphics+ in
+combination with or without its several options to further control
+graphic. \verb+\includegraphics+ is provided by {graphic[s,x].sty}
+which is part of any standard \LaTeX{} distribution.
+{graphicx.sty} is loaded by default. \LaTeX{} accepts figures in
+the postscript format while pdf\LaTeX{} accepts {*.pdf},
+{*.mps} (metapost), {*.jpg} and {*.png} formats. 
+pdf\LaTeX{} does not accept graphic files in the postscript format. 
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=.75]{figs/Fig1.pdf}
+	\caption{The evanescent light - $1S$ quadrupole coupling
+	($g_{1,l}$) scaled to the bulk exciton-photon coupling
+	($g_{1,2}$). The size parameter $kr_{0}$ is denoted as $x$ and
+	the \PMS is placed directly on the cuprous oxide sample ($\delta
+	r=0$, See also Table \protect\ref{tbl1}).}
+	\label{FIG:1}
+\end{figure}
+
+
+The \verb+table+ environment is handy for marking up tabular
+material. If users want to use {multirow.sty},
+{array.sty}, etc., to fine control/enhance the tables, they
+are welcome to load any package of their choice and
+{cas-sc.cls} will work in combination with all loaded
+packages.
+
+\begin{table}[width=.9\linewidth,cols=4,pos=h]
+\caption{This is a test caption. This is a test caption. This is a test
+caption. This is a test caption.}\label{tbl1}
+\begin{tabular*}{\tblwidth}{@{} LLLL@{} }
+\toprule
+Col 1 & Col 2 & Col 3 & Col4\\
+\midrule
+12345 & 12345 & 123 & 12345 \\
+12345 & 12345 & 123 & 12345 \\
+12345 & 12345 & 123 & 12345 \\
+12345 & 12345 & 123 & 12345 \\
+12345 & 12345 & 123 & 12345 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\section[Theorem and ...]{Theorem and theorem like environments}
+
+{cas-sc.cls} provides a few shortcuts to format theorems and
+theorem-like environments with ease. In all commands the options that
+are used with the \verb+\newtheorem+ command will work exactly in the same
+manner. {cas-sc.cls} provides three commands to format theorem or
+theorem-like environments: 
+
+\begin{verbatim}
+ \newtheorem{theorem}{Theorem}
+ \newtheorem{lemma}[theorem]{Lemma}
+ \newdefinition{rmk}{Remark}
+ \newproof{pf}{Proof}
+ \newproof{pot}{Proof of Theorem \ref{thm2}}
+\end{verbatim}
+
+
+The \verb+\newtheorem+ command formats a
+theorem in \LaTeX's default style with italicized font, bold font
+for theorem heading and theorem number at the right hand side of the
+theorem heading.  It also optionally accepts an argument which
+will be printed as an extra heading in parentheses. 
+
+\begin{verbatim}
+  \begin{theorem} 
+   For system (8), consensus can be achieved with 
+   $\|T_{\omega z}$ ...
+     \begin{eqnarray}\label{10}
+     ....
+     \end{eqnarray}
+  \end{theorem}
+\end{verbatim}  
+
+
+\newtheorem{theorem}{Theorem}
+
+\begin{theorem}
+For system (8), consensus can be achieved with 
+$\|T_{\omega z}$ ...
+\begin{eqnarray}\label{10}
+....
+\end{eqnarray}
+\end{theorem}
+
+The \verb+\newdefinition+ command is the same in
+all respects as its \verb+\newtheorem+ counterpart except that
+the font shape is roman instead of italic.  Both
+\verb+\newdefinition+ and \verb+\newtheorem+ commands
+automatically define counters for the environments defined.
+
+The \verb+\newproof+ command defines proof environments with
+upright font shape.  No counters are defined. 
+
+
+\section[Enumerated ...]{Enumerated and Itemized Lists}
+{cas-sc.cls} provides an extended list processing macros
+which makes the usage a bit more user friendly than the default
+\LaTeX{} list macros.   With an optional argument to the
+\verb+\begin{enumerate}+ command, you can change the list counter
+type and its attributes.
+
+\begin{verbatim}
+ \begin{enumerate}[1.]
+ \item The enumerate environment starts with an optional
+   argument `1.', so that the item counter will be suffixed
+   by a period.
+ \item You can use `a)' for alphabetical counter and '(i)' 
+  for roman counter.
+  \begin{enumerate}[a)]
+    \item Another level of list with alphabetical counter.
+    \item One more item before we start another.
+    \item One more item before we start another.
+    \item One more item before we start another.
+    \item One more item before we start another.
+\end{verbatim}
+
+Further, the enhanced list environment allows one to prefix a
+string like `step' to all the item numbers.  
+
+\begin{verbatim}
+ \begin{enumerate}[Step 1.]
+  \item This is the first step of the example list.
+  \item Obviously this is the second step.
+  \item The final step to wind up this example.
+ \end{enumerate}
+\end{verbatim}
+
+\section{Cross-references}
+In electronic publications, articles may be internally
+hyperlinked. Hyperlinks are generated from proper
+cross-references in the article.  For example, the words
+\textcolor{black!80}{Fig.~1} will never be more than simple text,
+whereas the proper cross-reference \verb+\ref{tiger}+ may be
+turned into a hyperlink to the figure itself:
+\textcolor{blue}{Fig.~1}.  In the same way,
+the words \textcolor{blue}{Ref.~[1]} will fail to turn into a
+hyperlink; the proper cross-reference is \verb+\cite{Knuth96}+.
+Cross-referencing is possible in \LaTeX{} for sections,
+subsections, formulae, figures, tables, and literature
+references.
+
+\section{Bibliography}
+
+Two bibliographic style files (\verb+*.bst+) are provided ---
+{model1-num-names.bst} and {model2-names.bst} --- the first one can be
+used for the numbered scheme. This can also be used for the numbered
+with new options of {natbib.sty}. The second one is for the author year
+scheme. When  you use model2-names.bst, the citation commands will be
+like \verb+\citep+,  \verb+\citet+, \verb+\citealt+ etc. However when
+you use model1-num-names.bst, you may use only \verb+\cite+ command.
+
+\verb+thebibliography+ environment.  Each reference is a\linebreak
+\verb+\bibitem+ and each \verb+\bibitem+ is identified by a label,
+by which it can be cited in the text:
+
+\noindent In connection with cross-referencing and
+possible future hyperlinking it is not a good idea to collect
+more that one literature item in one \verb+\bibitem+.  The
+so-called Harvard or author-year style of referencing is enabled
+by the \LaTeX{} package {natbib}. With this package the
+literature can be cited as follows:
+
+\begin{enumerate}[\textbullet]
+\item Parenthetical: \verb+\citep{WB96}+ produces (Wettig \& Brown, 1996).
+\item Textual: \verb+\citet{ESG96}+ produces Elson et al. (1996).
+\item An affix and part of a reference:\break
+\verb+\citep[e.g.][Ch. 2]{Gea97}+ produces (e.g. Governato et
+al., 1997, Ch. 2).
+\end{enumerate}
+
+In the numbered scheme of citation, \verb+\cite{<label>}+ is used,
+since \verb+\citep+ or \verb+\citet+ has no relevance in the numbered
+scheme.  {natbib} package is loaded by {cas-sc} with
+\verb+numbers+ as default option.  You can change this to author-year
+or harvard scheme by adding option \verb+authoryear+ in the class
+loading command.  If you want to use more options of the {natbib}
+package, you can do so with the \verb+\biboptions+ command.  For
+details of various options of the {natbib} package, please take a
+look at the {natbib} documentation, which is part of any standard
+\LaTeX{} installation.
+
+\appendix
+\section{My Appendix}
+Appendix sections are coded under \verb+\appendix+.
+
+\verb+\printcredits+ command is used after appendix sections to list 
+author credit taxonomy contribution roles tagged using \verb+\credit+ 
+in frontmatter.
+
+\printcredits
+
+
+
+
+%\vskip3pt
+
+\bio{}
+Author biography without author photo.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+\endbio
+
+\bio{figs/pic1}
+Author biography with author photo.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+\endbio
+
+\bio{figs/pic1}
+Author biography with author photo.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+Author biography. Author biography. Author biography.
+\endbio
+
+
