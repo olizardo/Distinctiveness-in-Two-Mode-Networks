@@ -11,6 +11,8 @@ date: "`r Sys.Date()`"
                        echo = FALSE, 
                        warning = FALSE, 
                        message = FALSE)
+   require(here)
+   require(kableExtra)
 ```
 
 # Data
@@ -39,6 +41,7 @@ date: "`r Sys.Date()`"
           0, 0, 0, 0, 0,  0, 0, 1, 1,  0, 0, 0, 0, 0),
           ncol = 14, byrow = TRUE)
      w <- c("EVELYN", "LAURA", "THERESA", "BRENDA", "CHARLOTTE", "FRANCES", "ELEANOR", "RUTH", "VERNE", "MYRA", "KATHERINE", "SYLVIA", "NORA", "HELEN", "OLIVIA", "FLORA", "PEARL", "DOROTHY")
+     w.abv <- c("EV.", "LA.", "TH.", "BR.", "CH.", "FR.", "EL.", "RU.", "VE.", "MY.", "KA.", "SY.", "NO.", "HE.", "OL.", "FL.", "PE.", "DO.")
      e <- paste("E", c(1:14), sep = "")
      rownames(A) <- w
      colnames(A) <- e
@@ -51,13 +54,33 @@ date: "`r Sys.Date()`"
    Bg <- t(t(rA) %*% A)
    Dp <- diag(rowSums(A))
    Dg <- diag(colSums(A))
-   rownames(Dp) <- rownames(A)
-   colnames(Dp) <- rownames(A)
+   rownames(Dp) <- w.abv
+   colnames(Dp) <- w.abv 
    rownames(Dg) <- colnames(A)
-   rownames(Dg) <- colnames(A)
+   colnames(Dg) <- colnames(A)
    Bp.n <- solve(Dp) %*% Bp
    Bg.n <- solve(Dg) %*% Bg
    CDp <- sort(rowSums(Bp.n))/nrow(A)
    CDg <- sort(rowSums(Bg.n))/ncol(A)
 ```
+
+# Tables
+```{r}
+   kbl(A, format = "latex") %>% 
+      kable_classic_2(full_width = F) %>% 
+      save_kable(here("Tabs", "sw.tex"),float = FALSE)
+   kbl(Bp, format = "latex") %>% 
+      save_kable(here("Tabs", "Bp.tex"),float = FALSE)
+   kbl(Bg, format = "latex") %>% 
+      save_kable(here("Tabs", "Bg.tex"),float = FALSE)
+   kbl(round(Bp.n, 2), format = "latex") %>% 
+      save_kable(here("Tabs", "Bpn.tex"),float = FALSE)
+   kbl(round(Bg.n, 2), format = "latex") %>% 
+      save_kable(here("Tabs", "Bgn.tex"),float = FALSE)
+   kbl(round(CDp, 2), format = "latex") %>% 
+      save_kable(here("Tabs", "CDp.tex"),float = FALSE)
+   kbl(round(CDg, 2), format = "latex") %>% 
+      save_kable(here("Tabs", "CDg.tex"),float = FALSE) 
+```
+
 
