@@ -1,0 +1,63 @@
+---
+title: "Distinctiveness in Two Mode Networks"
+author: "Omar Lizardo"
+date: "`r Sys.Date()`"
+---
+
+
+# Setup
+```{r setup}
+   knitr::opts_chunk$set(include = TRUE, 
+                       echo = FALSE, 
+                       warning = FALSE, 
+                       message = FALSE)
+```
+
+# Data
+```{r Southern women data}
+    A <- matrix(
+         c(
+          1, 1, 1, 1, 1,  1, 0, 1, 1,  0, 0, 0, 0, 0, 
+          1, 1, 1, 0, 1,  1, 1, 1, 0,  0, 0, 0, 0, 0, 
+          0, 1, 1, 1, 1,  1, 1, 1, 1,  0, 0, 0, 0, 0, 
+          1, 0, 1, 1, 1,  1, 1, 1, 0,  0, 0, 0, 0, 0, 
+          0, 0, 1, 1, 1,  0, 1, 0, 0,  0, 0, 0, 0, 0, 
+          0, 0, 1, 1, 1,  1, 0, 1, 0,  0, 0, 0, 0, 0, 
+          0, 0, 0, 1, 1,  1, 1, 1, 0,  0, 0, 0, 0, 0, 
+          0, 0, 0, 1, 1,  0, 1, 1, 1,  0, 0, 0, 0, 0, 
+          
+          0, 0, 0, 0, 0,  0, 1, 1, 1,  0, 0, 1, 0, 0, 
+          0, 0, 0, 0, 0,  0, 0, 1, 1,  1, 0, 1, 0, 0, 
+          0, 0, 0, 0, 0,  0, 0, 1, 1,  1, 0, 1, 1, 1,
+          0, 0, 0, 0, 0,  0, 1, 1, 1,  1, 0, 1, 1, 1,
+          0, 0, 0, 0, 0,  0, 1, 0, 1,  1, 1, 1, 1, 1,
+          0, 0, 0, 0, 0,  0, 1, 1, 0,  1, 1, 1, 0, 0,
+          0, 0, 0, 0, 0,  0, 0, 0, 1,  0, 1, 0, 0, 0,
+          0, 0, 0, 0, 0,  0, 0, 0, 1,  0, 1, 0, 0, 0, 
+          
+          0, 0, 0, 0, 0,  1, 0, 1, 1,  0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0,  0, 0, 1, 1,  0, 0, 0, 0, 0),
+          ncol = 14, byrow = TRUE)
+     w <- c("EVELYN", "LAURA", "THERESA", "BRENDA", "CHARLOTTE", "FRANCES", "ELEANOR", "RUTH", "VERNE", "MYRA", "KATHERINE", "SYLVIA", "NORA", "HELEN", "OLIVIA", "FLORA", "PEARL", "DOROTHY")
+     e <- paste("E", c(1:14), sep = "")
+     rownames(A) <- w
+     colnames(A) <- e
+```
+
+# Matrices
+```{r}
+   rA <- +(!A)
+   Bp <- A %*% t(rA)
+   Bg <- t(t(rA) %*% A)
+   Dp <- diag(rowSums(A))
+   Dg <- diag(colSums(A))
+   rownames(Dp) <- rownames(A)
+   colnames(Dp) <- rownames(A)
+   rownames(Dg) <- colnames(A)
+   rownames(Dg) <- colnames(A)
+   Bp.n <- solve(Dp) %*% Bp
+   Bg.n <- solve(Dg) %*% Bg
+   CDp <- sort(rowSums(Bp.n))/nrow(A)
+   CDg <- sort(rowSums(Bg.n))/ncol(A)
+```
+
