@@ -153,9 +153,15 @@ Two-Mode Networks  \sep Distinctiveness \sep Centrality \sep Position
 
 \section{Introduction}
 
+\begin{table}[]
+    \centering
+    \input{Tabs/sw}
+    \caption{Caption}
+    \label{tab:sw}
+\end{table}
 
 \section{Approach}
-Consider the affiliation matrix $\mathbf{A}$ associated with the two-mode network shown in~\ref{tab:southern} \citep{davis1941}. This matrix is of dimensions \textit{p} $\times$ \textit{g} where \textit{p} is the number of people (in this case $p = 18$) and \textit{g} is the number of groups ($g = 15)$. Row-wise, cells in this matrix record the affiliations of each person, with $a_{ij} = 1$ if the $i^{th}$ person belongs to the $j^{th}$ group; otherwise, $a_{ij} = 0$; considered column-wise, the cells of the affiliation matrix record the members of each group. 
+Consider the affiliation matrix $\mathbf{A}$ associated with the two-mode network shown in~\ref{tab:sw} \citep{davis1941}. This matrix is of dimensions \textit{p} $\times$ \textit{g} where \textit{p} is the number of people (in this case $p = 18$) and \textit{g} is the number of groups ($g = 15)$. Row-wise, cells in this matrix record the affiliations of each person, with $a_{ij} = 1$ if the $i^{th}$ person belongs to the $j^{th}$ group; otherwise, $a_{ij} = 0$; considered column-wise, the cells of the affiliation matrix record the members of each group. 
 
 Now consider a matrix $\mathbf{B}$ of the same dimensions as $\mathbf{A}$ but with reverse entries: For each cell $b_{ij}$ in $\mathbf{B}$, whenever $a_{ij} = 1$ in $\mathbf{A}$, $b_{ij} = 0$. In the same way, whenever $a_{ij} = 0$ in $\mathbf{A}$, $b_{ij} = 1$ in $\mathbf{B}$. $\mathbf{B}$ can be considered $\mathbf{A}$'s evil twin (alternatively, $\mathbf{B}$ can be thought of as ``bizarro $\mathbf{A}$'' if you are into Superman comics). For people, $\mathbf{B}$ records \textit{disaffiliations}; the groups each person does not belong to. This can be seen by noting that $b_{ij} = 1$ only when the $i^{th}$ person does not belong to the $j^{th}$ group. Similarly, for groups, $\mathbf{B}$ records \textit{non-memberships}, the people who don't belong to each group. 
 
