@@ -41,7 +41,7 @@ date: "`r Sys.Date()`"
           0, 0, 0, 0, 0,  0, 0, 1, 1,  0, 0, 0, 0, 0),
           ncol = 14, byrow = TRUE)
      w <- c("EVELYN", "LAURA", "THERESA", "BRENDA", "CHARLOTTE", "FRANCES", "ELEANOR", "RUTH", "VERNE", "MYRA", "KATHERINE", "SYLVIA", "NORA", "HELEN", "OLIVIA", "FLORA", "PEARL", "DOROTHY")
-     w.abv <- c("EV.", "LA.", "TH.", "BR.", "CH.", "FR.", "EL.", "RU.", "VE.", "MY.", "KA.", "SY.", "NO.", "HE.", "OL.", "FL.", "PE.", "DO.")
+     w.abv <- c("EV", "LA", "TH", "BR", "CH", "FR", "EL", "RU", "VE", "MY", "KA", "SY", "NO", "HE", "OL", "FL", "PE", "DO")
      e <- paste("E", c(1:14), sep = "")
      rownames(A) <- w
      colnames(A) <- e
@@ -54,6 +54,8 @@ date: "`r Sys.Date()`"
    Bg <- t(t(rA) %*% A)
    Dp <- diag(rowSums(A))
    Dg <- diag(colSums(A))
+   rownames(Bp) <- w.abv
+   colnames(Bp) <- w.abv 
    rownames(Dp) <- w.abv
    colnames(Dp) <- w.abv 
    rownames(Dg) <- colnames(A)
@@ -66,9 +68,10 @@ date: "`r Sys.Date()`"
 
 # Tables
 ```{r}
-   kbl(A, format = "latex") %>% 
-      kable_classic_2(full_width = F) %>% 
-      save_kable(here("Tabs", "sw.tex"),float = FALSE)
+   kbl(A, booktabs = T, caption = "Table 1", digits = 2) %>%
+   kable_styling(latex_options = c("striped", "HOLD_position"), 
+                 font_size = 10) %>% 
+      save_kable(here("Tabs", "sw.tex"), float = FALSE)
    kbl(Bp, format = "latex") %>% 
       save_kable(here("Tabs", "Bp.tex"),float = FALSE)
    kbl(Bg, format = "latex") %>% 
