@@ -71,21 +71,26 @@ date: "`r Sys.Date()`"
    make.table <- function(t, cap = "", fn, ang = 0) {
       kbl(t, format = "latex", booktabs = T, linesep = "",
           caption = cap, digits = 2) %>%
-         kable_styling(
-            latex_options = c("hold_position", "scale_down"),
-            ) %>% 
+         kable_styling(latex_options = c("hold_position")) %>% 
          row_spec(0, angle = ang) %>% 
          save_kable(here("Tabs", paste(fn, ".tex", sep = "")))
-   }
+         }
+   make.scale.table <- function(t, cap = "", fn, ang = 0) {
+      kbl(t, format = "latex", booktabs = T, linesep = "",
+          caption = cap, digits = 2) %>%
+         kable_styling(latex_options = c("hold_position", "scale_down")) %>% 
+         row_spec(0, angle = ang) %>% 
+         save_kable(here("Tabs", paste(fn, ".tex", sep = "")))
+         }
    make.small.table <- function(t, cap = "", fn) {
       kbl(t, format = "latex", booktabs = T, linesep = "",
           caption = cap, digits = 2) %>%
          save_kable(here("Tabs", paste(fn, ".tex", sep = "")))
          }
    make.table(A, cap = "\\label{tab:sw}", fn = "sw")
-   make.table(Bp, cap = "\\label{tab:Bp}", fn = "Bp")
+   make.table(Bp, cap = "\\label{tab:Bp}", fn = "Bp", ang = -90)
    make.table(Bg, cap = "\\label{tab:Bg}", fn = "Bg")
-   make.table(Bp.n, cap = "\\label{tab:Bpn}", fn = "Bpn")
+   make.scale.table(Bp.n, cap = "\\label{tab:Bpn}", fn = "Bpn", ang = -90)
    make.table(Bg.n, cap = "\\label{tab:Bgn}", fn = "Bgn")
    make.small.table(Cp, cap = "\\label{tab:Cp}", fn = "CDp")
    make.small.table(Cg, cap = "\\label{tab:Cg}", fn = "CDg")
