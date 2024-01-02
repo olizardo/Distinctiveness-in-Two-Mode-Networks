@@ -49,9 +49,9 @@ date: "`r Sys.Date()`"
 
 # Matrices
 ```{r}
-   rA <- +(!A)
-   Bp <- A %*% t(rA)
-   Bg <- t(t(rA) %*% A)
+   B <- +(!A)
+   Bp <- A %*% t(B)
+   Bg <- t(t(B) %*% A)
    Dp <- diag(rowSums(A))
    Dg <- diag(colSums(A))
    rownames(Bp) <- w.abv
@@ -62,28 +62,39 @@ date: "`r Sys.Date()`"
    colnames(Dg) <- colnames(A)
    Bp.n <- solve(Dp) %*% Bp
    Bg.n <- solve(Dg) %*% Bg
-   CDp <- sort(rowSums(Bp.n))/nrow(A)
-   CDg <- sort(rowSums(Bg.n))/ncol(A)
+   Cp <- as.matrix(sort(rowSums(Bp.n), decreasing = T)/nrow(A))
+   rownames(Cp) <- w
+   colnames(Cp) <- c("Distinctiveness")
+   Cg <- as.matrix(sort(rowSums(Bg.n), decreasing = T)/ncol(A))
+   colnames(Cp) <- c("Distinctiveness")
+
+   
 ```
 
 # Tables
 ```{r}
-   kbl(A, booktabs = T, caption = "Table 1", digits = 2) %>%
-   kable_styling(latex_options = c("striped", "HOLD_position"), 
-                 font_size = 10) %>% 
-      save_kable(here("Tabs", "sw.tex"), float = FALSE)
-   kbl(Bp, format = "latex") %>% 
-      save_kable(here("Tabs", "Bp.tex"),float = FALSE)
-   kbl(Bg, format = "latex") %>% 
-      save_kable(here("Tabs", "Bg.tex"),float = FALSE)
-   kbl(round(Bp.n, 2), format = "latex") %>% 
-      save_kable(here("Tabs", "Bpn.tex"),float = FALSE)
-   kbl(round(Bg.n, 2), format = "latex") %>% 
-      save_kable(here("Tabs", "Bgn.tex"),float = FALSE)
-   kbl(round(CDp, 2), format = "latex") %>% 
-      save_kable(here("Tabs", "CDp.tex"),float = FALSE)
-   kbl(round(CDg, 2), format = "latex") %>% 
-      save_kable(here("Tabs", "CDg.tex"),float = FALSE) 
+   make.table <- function(t, cap = "", fn) {
+      kbl(t, format = "latex", booktabs = T, caption = cap, digits = 2) %>%
+         kable_styling(
+            latex_options = c("hold_position", "scale_down"),
+            ) %>% 
+         save_kable(here("Tabs", paste(fn, ".tex", sep = "")))
+   }
+   make.small.table <- function(t, cap = "", fn) {
+      kbl(t, format = "latex", booktabs = T, caption = cap, digits = 2) %>%
+         kable_styling(full_width = T) %>% 
+         save_kable(here("Tabs", paste(fn, ".tex", sep = "")))
+         }
+   make.table(A, cap = "", fn = "sw")
+   make.table(Bp, cap = "", fn = "Bp")
+   make.table(Bg, cap = "", fn = "Bg")
+   make.table(Bp.n, cap = "", fn = "Bpn")
+   make.table(Bg.n, cap = "", fn = "Bgn")
+   make.small.table(Cp, cap = "", fn = "CDp")
+   make.small.table(Cg, cap = "", fn = "CDg")
 ```
+
+`
+
 
 
