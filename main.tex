@@ -179,22 +179,13 @@ So far, this is well-trodden ground. However, consider a modified version of the
 \end{equation}
 
 \begin{equation}
-    \textbf{G}^* = \textbf{B}^T\textbf{A}
+    \textbf{G}^* = \textbf{A}^T\textbf{B}
 \end{equation}
 
 What's the difference between $\mathbf{P}$ and $\mathbf{P^*}$? Well, since $\mathbf{P}$ is built from information in the original affiliation matrix $\mathbf{A}$, the one mode projection $\mathbf{P}$ counts membership \textit{matches} between people. Matrix $\mathbf{P^*}$ on the other hand, counts \textit{mismatches}; that is, its entries $p^*_{ij}$ count the number of times the $i^{th}$ person belongs to a group that the $j^{th}$ person does \textit{not} belong to. So it records the \textit{distinctiveness} of persons $i$'s memberships compared to $j$'s. In the same way, for groups, the entries $g^*_{kl}$ in $\mathbf{G^*}$ counts the number of people that belong to the $k^{th}$ group who don't belong to the $l^{th}$ one. So it records the \textit{distinctiveness} of group $k$'s members compared to $l$'s. 
 
-\begin{table}[]
-    \centering
-    \scriptsize
-    \input{Tabs/Bp}
-    \caption{Caption}
-    \label{tab:pdist}
-
-    \input{Tabs/Bg}
-    \caption{Caption}
-    \label{tab:gdist}
-\end{table}
+\input{Tabs/Bp}
+\input{Tabs/Bg}
 
 Note that while the $\mathbf{P}$ and $\mathbf{G}$ matrices are necessarily symmetrical (the number of shared memberships between persons $i$ and $j$ has to be the same as that between $j$ and $i$), this is not the case for $\mathbf{P^*}$ and $\mathbf{G^*}$. Tables~\ref{tab:pdist} and~\ref{tab:gdist} show the results for the Southern Women Data, where we can see that both $\mathbf{P^*}$ and $\mathbf{G^*}$ are asymmetric. This property is most clearly appreciated when one person's $i$ memberships are a \textit{subset} of another person's $j$ and $j$'s total number of memberships is larger than $i$'s. In that case, $p^*_{ij} = 0$ (there are no groups that person $i$ belongs to that $j$ does not belong to) while $p^*_{ji} > 0$ (there are some groups $j$ belongs to that $i$ does not). In the same way, in the case of two people whose memberships have no overlap, $p^*_{ij}$ will be equal to the number of groups $i$ belongs to, and $p^*_{ji}$ will be equal to the number of groups $j$ belongs to (which don't necessarily have to be the same, although they could be).  The same reasoning applies to the group-based distinctiveness matrix $\mathbf{G^*}$.
 
@@ -210,16 +201,8 @@ It is also useful to consider a modified, degree-normalized version of the disti
 
 Where everything is as before, and $\textbf{D}_p$ is the diagonal degree matrix for people (containing the number of memberships of each person, as given by the row sums of $\mathbf{A}$ as diagonal entries) and $\textbf{D}_g$ is the diagonal degree matrix for groups (containing the number of members of each group, as given by the column sums of $\mathbf{A}$ as diagonal entries). The degree-normalized distinctiveness matrices for persons and groups corresponding to the Southern Women Data are shown in~\ref{tab:degnormp} and~\ref{tab:degnormg}.
 
-\begin{table}[]
-    \tiny
-    \input{Tabs/Bpn}
-    \caption{Caption}
-    \label{tab:degnormp}
-
-    \input{Tabs/Bgn}
-    \caption{Caption}
-    \label{tab:degnormg}
-\end{table}
+\input{Tabs/Bpn}
+\input{Tabs/Bgn}
 
 One way to interpret the information contained in the $\hat{\textbf{P}}^*$ and $\hat{\textbf{G}}^*$ matrices is as giving the \textit{probability} that the row person does \textit{not} share a group membership with the column person, and the probability that the row group does not share a member with the column group (respectively). For pairs of persons and groups with disjoint memberships, this value is at a maximum: $\hat{p}_{ij}^* = 1$ and $\hat{g}_{ij}^* = 1$. Whenever the row person's memberships or the row group's members are a strict subset of the column person or group, this value is at a minimum: $\hat{p}_{ij}^* = 0$ and $\hat{g}_{ij}^* = 0$. All other cases fall in between; as the memberships of one person $i$ approaches being a subset of another person's $j$, $\hat{p}_{ij}^*$ approaches zero. In the same way, as the members of one group $i$ approach being a subset of another group's $j$, $\hat{g}_{ij}^*$ approaches zero. 
 
@@ -235,16 +218,8 @@ Accordingly, since both the $\hat{\textbf{P}}^*$ and the $\hat{\textbf{G}}^*$ ma
 
 For both persons and groups, $C^{D}$ approaches one as the person's memberships are distinct from other person's and as the group's members are distinct from that of other groups. Of course, the value of one can only be reached in the (odd) isolated case of a person who belongs to a ``group'' no one else belongs to or a group with a member who is not a member of other groups. In the same way, $C^{D}$ approaches zero when a person's memberships are a subset of other people's or a group's members are a subset of that of other groups. The rank-ordered $C^D$ indices for each person and group in the Southern Women's Data are shown in Table~\ref{tab:cdp} and~\ref{tab:cdg}.
 
-\begin{table}[]
-    \centering
-    \input{Tabs/CDp}
-    \caption{Caption}
-    \label{tab:cdp}
-
-    \input{Tabs/CDg}
-    \caption{Caption}
-    \label{tab:cdg}
-\end{table}
+\input{Tabs/CDp}
+\input{Tabs/CDg}
 
 
 %% Loading bibliography style file
