@@ -64,7 +64,8 @@ date: "`r Sys.Date()`"
    Bg.n <- solve(Dg) %*% Bg
    Cp <- as.matrix(sort(rowSums(Bp.n), decreasing = T)/nrow(A))
    rownames(Cp) <- w
-   colnames(Cp) <- c("Distinctiveness")
+   colnames(Cp) <- c("Persons", "Distinctiveness")
+   
    Cg <- as.matrix(sort(rowSums(Bg.n), decreasing = T)/ncol(A))
    colnames(Cp) <- c("Distinctiveness")
 
@@ -82,7 +83,6 @@ date: "`r Sys.Date()`"
    }
    make.small.table <- function(t, cap = "", fn) {
       kbl(t, format = "latex", booktabs = T, caption = cap, digits = 2) %>%
-         kable_styling(full_width = T) %>% 
          save_kable(here("Tabs", paste(fn, ".tex", sep = "")))
          }
    make.table(A, cap = "", fn = "sw")
