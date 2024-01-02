@@ -192,11 +192,11 @@ Note that while the $\mathbf{P}$ and $\mathbf{G}$ matrices are necessarily symme
 It is also useful to consider a modified, degree-normalized version of the distinctiveness projection matrices for persons and groups, as given by: 
 
 \begin{equation}
-    \hat{\textbf{P}}^* = \textbf{D}_p^{-1}\textbf{P}^*
+    \hat{\textbf{P}} = \textbf{D}_p^{-1}\textbf{P}^*
 \end{equation}
 
 \begin{equation}
-    \hat{\textbf{G}}^* = \textbf{D}_g^{-1}\textbf{G}^*
+    \hat{\textbf{G}} = \textbf{D}_g^{-1}\textbf{G}^*
 \end{equation}
 
 Where everything is as before, and $\textbf{D}_p$ is the diagonal degree matrix for people (containing the number of memberships of each person, as given by the row sums of $\mathbf{A}$ as diagonal entries) and $\textbf{D}_g$ is the diagonal degree matrix for groups (containing the number of members of each group, as given by the column sums of $\mathbf{A}$ as diagonal entries). The degree-normalized distinctiveness matrices for persons and groups corresponding to the Southern Women Data are shown in Tables~\ref{tab:Bpn} and~\ref{tab:Bgn}.
@@ -204,9 +204,9 @@ Where everything is as before, and $\textbf{D}_p$ is the diagonal degree matrix 
 \input{Tabs/Bpn}
 \input{Tabs/Bgn}
 
-One way to interpret the information contained in the $\hat{\textbf{P}}^*$ and $\hat{\textbf{G}}^*$ matrices is as giving the \textit{probability} that the row person does \textit{not} share a group membership with the column person, and the probability that the row group does not share a member with the column group (respectively). For pairs of persons and groups with disjoint memberships, this value is at a maximum: $\hat{p}_{ij}^* = 1$ and $\hat{g}_{ij}^* = 1$. Whenever the row person's memberships or the row group's members are a strict subset of the column person or group, this value is at a minimum: $\hat{p}_{ij}^* = 0$ and $\hat{g}_{ij}^* = 0$. All other cases fall in between; as the memberships of one person $i$ approaches being a subset of another person's $j$, $\hat{p}_{ij}^*$ approaches zero. In the same way, as the members of one group $i$ approach being a subset of another group's $j$, $\hat{g}_{ij}^*$ approaches zero. 
+One way to interpret the information contained in the $\hat{\textbf{P}}$ and $\hat{\textbf{G}}$ matrices is as giving the \textit{probability} that the row person does \textit{not} share a group membership with the column person, and the probability that the row group does not share a member with the column group (respectively). For pairs of persons and groups with disjoint memberships, this value is at a maximum: $\hat{p}_{ij} = 1$ and $\hat{g}_{ij} = 1$. Whenever the row person's memberships or the row group's members are a strict subset of the column person or group, this value is at a minimum: $\hat{p}_{ij} = 0$ and $\hat{g}_{ij} = 0$. All other cases fall in between; as the memberships of one person $i$ come closer to being a subset of another person's $j$, $\hat{p}_{ij}$ approaches zero. In the same way, as the members of one group $i$ come closer to being a subset of another group's $j$, $\hat{g}_{ij}$ approaches zero. 
 
-Accordingly, since both the $\hat{\textbf{P}}^*$ and the $\hat{\textbf{G}}^*$ matrices contain pairwise information of the \textit{distinctiveness} of each person's and group's memberships relative to that of each other person and group, we can calculate a straightforward \textit{Distinctiveness Centrality Index} for each node set based on this information, as given by:
+Accordingly, since both the $\hat{\textbf{P}}$ and the $\hat{\textbf{G}}$ matrices contain pairwise information of the \textit{distinctiveness} of each person's and group's memberships relative to that of each other person and group, we can calculate a straightforward \textit{Distinctiveness Centrality Index} for each node set based on this information, as given by:
 
 \begin{equation}
     C^{D}_p = \frac{1}{p}\sum_i \hat{p}_{ij}^*
@@ -216,7 +216,9 @@ Accordingly, since both the $\hat{\textbf{P}}^*$ and the $\hat{\textbf{G}}^*$ ma
      C^{D}_g = \frac{1}{g}\sum_i \hat{g}_{ij}^*
 \end{equation}
 
-For both persons and groups, $C^{D}$ approaches one as the person's memberships are distinct from other person's and as the group's members are distinct from that of other groups. Of course, the value of one can only be reached in the (odd) isolated case of a person who belongs to a ``group'' no one else belongs to or a group with a member who is not a member of other groups. In the same way, $C^{D}$ approaches zero when a person's memberships are a subset of other people's or a group's members are a subset of that of other groups. The rank-ordered $C^D$ indices for each person and group in the Southern Women's Data are shown in Tables~\ref{tab:Cp} and~\ref{tab:Cg}.
+For both persons and groups, $C^{D}$ approaches one as the person's memberships are increasingly distinct from other people's and as the group's members are distinct from other groups. Of course, the value of one can only be reached in the (odd) isolated case of a person who belongs to a ``group'' no one else belongs to or a group with a member who is not a member of other groups. In the same way, $C^{D}$ approaches zero when a person's memberships are a subset of other people's or a group's members are a subset of that of other groups. 
+
+The rank-ordered $C^D$ indices for each person and group in the Southern Women's Data are shown in Tables~\ref{tab:Cp} and~\ref{tab:Cg}.
 
 \input{Tabs/CDp}
 \input{Tabs/CDg}
